@@ -3,26 +3,32 @@ import Reveal from "./Reveal";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", msg: "" });
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState("idle");
 
   const inputClass =
     "w-full bg-white/[0.03] border border-white/[0.07] rounded-xl px-5 py-3.5 font-body font-light text-sm text-[#f1f0ff] outline-none focus:border-purple/50 transition-colors duration-200 placeholder:text-[#6b6a80]";
 
   const handleSubmit = async () => {
     if (!form.name || !form.email) return;
+    setStatus("loading");
 
-    await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        access_key: "d9cf3379-13e4-4fc2-aaa3-4ddfefb92b99",
-        name: form.name,
-        email: form.email,
-        message: form.msg,
-      }),
-    });
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "ba9c7ce0-922c-4081-8af0-4342e42ee958",
+          name: form.name,
+          email: form.email,
+          message: form.msg || "—",
+        }),
+      });
 
-    setSent(true);
+      const data = await res.json();
+      setStatus(data.success ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -39,7 +45,13 @@ export default function Contact() {
             </p>
           </div>
 
-          {!sent ? (
+          {status === "success" ? (
+            <div className="text-center py-16 rounded-2xl border border-purple/20 bg-purple/[0.05]">
+              <div className="text-4xl mb-4">💜</div>
+              <div className="font-display font-bold text-lg text-[#f1f0ff] mb-1">Messaggio ricevuto!</div>
+              <div className="font-body font-light text-sm text-[#6b6a80]">Ti risponderemo presto.</div>
+            </div>
+          ) : (
             <div className="flex flex-col gap-3">
               <input
                 placeholder="Il tuo nome"
@@ -49,6 +61,7 @@ export default function Contact() {
               />
               <input
                 placeholder="La tua email"
+                type="email"
                 value={form.email}
                 onChange={e => setForm({ ...form, email: e.target.value })}
                 className={inputClass}
@@ -60,18 +73,20 @@ export default function Contact() {
                 rows={5}
                 className={`${inputClass} resize-none`}
               />
+
+              {status === "error" && (
+                <p className="text-sm text-red-400 font-body font-light text-center">
+                  Qualcosa è andato storto. Riprova.
+                </p>
+              )}
+
               <button
                 onClick={handleSubmit}
-                className="w-full grad-bg text-white font-body font-medium text-sm py-4 rounded-xl mt-1 glow-purple hover:opacity-90 transition-opacity duration-200"
+                disabled={status === "loading"}
+                className="w-full grad-bg text-white font-body font-medium text-sm py-4 rounded-xl mt-1 glow-purple hover:opacity-90 transition-opacity duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Invia messaggio
+                {status === "loading" ? "Invio in corso…" : "Invia messaggio"}
               </button>
-            </div>
-          ) : (
-            <div className="text-center py-16 rounded-2xl border border-purple/20 bg-purple/[0.05]">
-              <div className="text-4xl mb-4">💜</div>
-              <div className="font-display font-bold text-lg text-[#f1f0ff] mb-1">Messaggio ricevuto!</div>
-              <div className="font-body font-light text-sm text-[#6b6a80]">Ti risponderemo presto.</div>
             </div>
           )}
         </Reveal>
