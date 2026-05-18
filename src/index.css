@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: #09090f;
+    color: #f1f0ff;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+  ::placeholder { color: #6b6a80; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #09090f; }
+  ::-webkit-scrollbar-thumb { background: #8b5cf6; border-radius: 2px; }
+}
+
+@layer utilities {
+  .grad-text {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .grad-bg {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  }
+  .glow-purple {
+    box-shadow: 0 0 40px rgba(139,92,246,0.3);
+  }
+  .glow-purple-sm {
+    box-shadow: 0 0 20px rgba(139,92,246,0.25);
+  }
+  .border-dim { border-color: rgba(255,255,255,0.07); }
+  .border-purple-dim { border-color: rgba(139,92,246,0.15); }
+}
