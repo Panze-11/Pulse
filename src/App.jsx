@@ -21,6 +21,7 @@ export default function App() {
       <Features />
       <HowItWorks />
       <Values />
+      <TechDeepDive />
       <Contact />
       <Footer />
     </div>
