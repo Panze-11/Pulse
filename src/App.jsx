@@ -6,6 +6,7 @@ import Survey from "./components/Survey";
 import Features from "./components/Features";
 import HowItWorks from "./components/HowItWorks";
 import Values from "./components/Values";
+import TechDeepDive from "./components/TechDeepDive";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
