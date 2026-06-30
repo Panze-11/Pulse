@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import logo from "../assets/logo.svg";
 
-const links = ["Problema", "Funzionalità", "Percorso", "Valori", "Tecnica", "Contatti"];
+const links = ["Problema", "Funzionalità", "Percorso", "Valori", "Contatti"];
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
