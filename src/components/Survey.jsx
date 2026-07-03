@@ -3,7 +3,6 @@ import useStats from "./useStats";
 
 export default function Survey() {
   const stats = useStats();
-
   return (
     <section className="py-24 px-[5vw] border-t border-white/[0.07] bg-[#0d0d16]">
       <div className="max-w-[900px] mx-auto">
@@ -41,9 +40,8 @@ export default function Survey() {
               <div className="w-20 h-20 rounded-2xl grad-bg flex items-center justify-center text-4xl glow-purple">
                 📋
               </div>
-              <a>
+              
                 href="https://docs.google.com/forms/d/e/1FAIpQLSdrGXjaySYREqqZt4e5UZqct3XO7tcFBkeU0jEcUxeOl64xfQ/viewform"
-              </a>
                 target="_blank"
                 rel="noopener noreferrer"
                 className="grad-bg text-white font-body font-medium text-sm px-8 py-3.5 rounded-full glow-purple hover:-translate-y-0.5 hover:shadow-[0_0_60px_rgba(139,92,246,0.45)] transition-all duration-200 whitespace-nowrap"
