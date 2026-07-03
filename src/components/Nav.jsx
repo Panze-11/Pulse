@@ -5,12 +5,16 @@ const links = ["Problema", "Funzionalità", "Percorso", "Valori", "Contatti"];
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
-
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
   }, []);
+
+  const handleLogoClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.history.pushState(null, "", "/");
+  };
 
   return (
     <nav
@@ -21,17 +25,19 @@ export default function Nav() {
       }`}
     >
       {/* Logo */}
-      <div className="flex items-center gap-2.5">
+      <div
+        onClick={handleLogoClick}
+        className="flex items-center gap-2.5 cursor-pointer"
+      >
         <img src={logo} alt="Pulse" className="h-7 w-auto" />
         <span className="font-display font-extrabold text-lg tracking-tight text-[#f1f0ff]">
           Pulse
         </span>
       </div>
-
       {/* Links */}
       <div className="hidden md:flex items-center gap-10">
         {links.map((l) => (
-          <a
+          
             key={l}
             href={`#${l.toLowerCase()}`}
             className="font-body text-sm text-[#6b6a80] hover:text-[#f1f0ff] transition-colors duration-200"
@@ -40,7 +46,6 @@ export default function Nav() {
           </a>
         ))}
       </div>
-
       {/* CTA */}
       <div className="grad-bg text-white text-sm font-body font-medium px-5 py-2 rounded-full cursor-pointer glow-purple-sm hover:opacity-90 transition-opacity">
         Presto disponibile
