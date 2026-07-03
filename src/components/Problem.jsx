@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Reveal from "./Reveal";
+import useStats from "./useStats";
 
 const tags = ["Privato", "Sicuro", "Non giudicante", "Moderno"];
 
@@ -28,21 +29,7 @@ function StatCard({ n, label }) {
 }
 
 export default function Problem() {
-  const [stats, setStats] = useState({
-    totale: 43,
-    useresti: 91,
-    ansia: 58,
-    social: 77,
-    noEducazione: 60,
-    aggiornato: "maggio 2026"
-  });
-
-  useEffect(() => {
-    fetch("https://drive.google.com/uc?export=download&id=1BI7KfgXFwM46fJK4ReunwVvhMfRWVBnn")
-      .then(r => r.json())
-      .then(data => setStats(data))
-      .catch(() => {}); // fallback ai dati statici se fallisce
-  }, []);
+  const stats = useStats();
 
   const statCards = [
     { n: `${stats.useresti}%`, label: `dei ${stats.totale} ragazzi intervistati userebbe o considera Pulse` },
