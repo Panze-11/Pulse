@@ -41,7 +41,8 @@ export default function Survey() {
                 📋
               </div>
               
-                href="https://docs.google.com/forms/d/e/1FAIpQLSdrGXjaySYREqqZt4e5UZqct3XO7tcFBkeU0jEcUxeOl64xfQ/viewform"
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSdrGXjaySYREqqZt4e5UZqct3XO7tcFBkeU0jEcUxeOl64xfQ/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="grad-bg text-white font-body font-medium text-sm px-8 py-3.5 rounded-full glow-purple hover:-translate-y-0.5 hover:shadow-[0_0_60px_rgba(139,92,246,0.45)] transition-all duration-200 whitespace-nowrap"
