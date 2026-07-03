@@ -34,7 +34,7 @@ export default function Nav() {
           Pulse
         </span>
       </div>
-      {/* Links */}
+      {https://getpulse-now.vercel.app/}
       <div className="hidden md:flex items-center gap-10">
         {links.map((l) => (
           
