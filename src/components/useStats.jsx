@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const STATS_URL = "https://docs.google.com/spreadsheets/d/1j6wvsR4t2zoM61C4psfM6QQpegs07hSIwPukkT_pW4o/edit?usp=sharing";
+const STATS_URL = "https://script.google.com/macros/s/AKfycbx_M5sgVLx25BuqcleNNaCUzQCL_EaOfqcQsKo3vrahgjxTv2fbsaBo6OdNM43XJ7Z5/exec";
 
 const DEFAULT_STATS = {
   totale: 43,
@@ -26,9 +26,8 @@ export default function useStats() {
     fetch(STATS_URL)
       .then((r) => r.json())
       .then((data) => setStats({ ...DEFAULT_STATS, ...data }))
-      .catch(() => {}); // fallback ai dati statici se fallisce
+      .catch((err) => console.error("Errore fetch stats:", err));
   }, []);
 
   return stats;
 }
-
